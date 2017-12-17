@@ -9,6 +9,12 @@ namespace ChatProject.Models
 {
     public class User
     {
+        public User()
+        {
+            SentF = new List<UserUser>();
+            ReceivedF = new List<UserUser>();
+        }
+
         public long Id { get; set; }
         [Required]
         [StringLength(30)]
@@ -37,7 +43,7 @@ namespace ChatProject.Models
             }
             set { _DateOfJoin = value; }
         }
-        //public virtual List<User> MyProperty { get; set; }
-
+        public IList<UserUser> SentF { get; set; }
+        public IList<UserUser> ReceivedF { get; set; }
     }
 }

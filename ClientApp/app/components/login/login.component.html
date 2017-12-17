@@ -1,0 +1,45 @@
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+<div id="body" >
+    <div class="container">
+        <div class="top">
+            <h1 id="title" class="hidden"><span id="logo">Daily <span>UI</span></span></h1>
+        </div>
+        <div class="login-box animated fadeInUp">
+            <div class="box-header">
+                <h2>Log In</h2>
+            </div>
+            <form method="post" #f="ngForm" (ngSubmit)="onSignin(f)">
+                <label for="username">Username</label>
+                <br />
+                <input type="text" name="username" id="username" (ngModel)="username">
+                <br />
+                <label for="password">Password</label>
+                <br />
+                <input type="password" name="password" id="password" (ngModel)="password">
+                <br />
+                <div class="alert alert-danger" *ngIf="wrong">Username or Password are invalid</div>
+                <input type="submit" value="Sign In"/>
+            </form>
+            <br />
+            <a href="#"><p class="small">Forgot your password?</p></a>
+        </div>
+    </div>
+</div>
+<script>
+	$(document).ready(function () {
+    	$('#logo').addClass('animated fadeInDown');
+    	$("input:text:visible:first").focus();
+	});
+	$('#username').focus(function() {
+		$('label[for="username"]').addClass('selected');
+	});
+	$('#username').blur(function() {
+		$('label[for="username"]').removeClass('selected');
+	});
+	$('#password').focus(function() {
+		$('label[for="password"]').addClass('selected');
+	});
+	$('#password').blur(function() {
+		$('label[for="password"]').removeClass('selected');
+	});
+</script>

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ChatProject.Migrations
 {
-    public partial class firstmigration : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,7 @@ namespace ChatProject.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DateOfJoin = table.Column<DateTime>(nullable: false),
+                    DateOfJoin = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
                     FName = table.Column<string>(maxLength: 30, nullable: false),
                     LName = table.Column<string>(maxLength: 30, nullable: false),
                     Password = table.Column<string>(maxLength: 255, nullable: false),
@@ -28,39 +28,35 @@ namespace ChatProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserUser",
+                name: "Friendship",
                 columns: table => new
                 {
                     ReceiverId = table.Column<long>(nullable: false),
-                    SenderId = table.Column<long>(nullable: false)
+                    SenderId = table.Column<long>(nullable: false),
+                    UserId = table.Column<long>(nullable: true),
+                    status = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserUser", x => new { x.ReceiverId, x.SenderId });
+                    table.PrimaryKey("PK_Friendship", x => new { x.ReceiverId, x.SenderId });
                     table.ForeignKey(
-                        name: "FK_UserUser_Users_ReceiverId",
-                        column: x => x.ReceiverId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_UserUser_Users_SenderId",
-                        column: x => x.SenderId,
+                        name: "FK_Friendship_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserUser_SenderId",
-                table: "UserUser",
-                column: "SenderId");
+                name: "IX_Friendship_UserId",
+                table: "Friendship",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "UserUser");
+                name: "Friendship");
 
             migrationBuilder.DropTable(
                 name: "Users");

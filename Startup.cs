@@ -25,6 +25,7 @@ namespace ChatProject
         {
             var connection = @"Server=(localdb)\mssqllocaldb;Database=ChatProject;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<Context.AppContext>(options => options.UseSqlServer(connection));
+            services.AddSession();
             services.AddMvc();
         }
 

@@ -1,3 +1,4 @@
+<div class="modal-backdrop"style="opacity:0.5" *ngIf="logoutConfirm"></div>
 <div class='main-nav'>
     <div class='navbar navbar-inverse'>
         <div class='navbar-header'>
@@ -7,27 +8,59 @@
                 <span class='icon-bar'></span>
                 <span class='icon-bar'></span>
             </button>
-            <a class='navbar-brand' [routerLink]="['/home']">ChatProject</a>
+            <div class="navbar-brand"> </div>
+            <a class="company-logo" href="#">
+                <img src="/avatar.png" style="" alt="">
+            </a>
+            <div class="userName">{{currentUser.fName}} {{currentUser.lName}}</div>
         </div>
+
+        <!-- you'll find here notification objects -->
         <div class='clearfix'></div>
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
-                <li [routerLinkActive]="['link-active']">
+                <li [routerLinkActive]="['link-active']" >
                     <a [routerLink]="['/home']">
-                        <span class='glyphicon glyphicon-home'></span> Home
+                        <span class="fa fa-user-plus"></span> Add friends <a class=""><span class="badge badge-pill">{{sent?.length}}</span></a>
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/counter']">
-                        <span class='glyphicon glyphicon-education'></span> Counter
+                    <a [routerLink]="['/chats']">
+                        <span class='fa fa-comments'></span> My chats <a class=""><span class="badge badge-pill">3</span></a>
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/fetch-data']">
-                        <span class='glyphicon glyphicon-th-list'></span> Fetch data
+                    <a [routerLink]="['/profile']">
+                        <span class='fa fa-user'></span> My profile <a class=""><span class="badge badge-pill">3</span></a>
+                    </a>
+                </li>
+                <li (click)="logoutConfirm=true" [ngClass]="{ 'link-logout':logoutConfirm }">
+                    <a data-target="#myModal" data-toggle="modal">
+                        <span class='fa fa-sign-out'></span> Logout
                     </a>
                 </li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<!-- logout confirmation modal ! -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4>Log Out <i class="fa fa-lock"></i></h4>
+            </div>
+            <div class="modal-body">
+                <p><i class="fa fa-question-circle"></i> Are you sure you want to log-off? <br /></p>
+                <div class="actionsBtns">
+                    <form>
+                        <input [routerLink]="['/logout']" (click)="logoutConfirm=false" class="btn btn-default btn-primary" data-dismiss="modal" value="Logout" />
+                        <button class="btn btn-default"(click)="logoutConfirm=false" data-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

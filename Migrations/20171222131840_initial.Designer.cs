@@ -11,8 +11,8 @@ using System;
 namespace ChatProject.Migrations
 {
     [DbContext(typeof(Context.AppContext))]
-    [Migration("20171217130850_first-migration")]
-    partial class firstmigration
+    [Migration("20171222131840_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,12 +21,31 @@ namespace ChatProject.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ChatProject.Models.Friendship", b =>
+                {
+                    b.Property<long>("ReceiverId");
+
+                    b.Property<long>("SenderId");
+
+                    b.Property<long?>("UserId");
+
+                    b.Property<bool>("status");
+
+                    b.HasKey("ReceiverId", "SenderId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Friendship");
+                });
+
             modelBuilder.Entity("ChatProject.Models.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateOfJoin");
+                    b.Property<DateTime>("DateOfJoin")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("FName")
                         .IsRequired()
@@ -51,30 +70,11 @@ namespace ChatProject.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ChatProject.Models.UserUser", b =>
+            modelBuilder.Entity("ChatProject.Models.Friendship", b =>
                 {
-                    b.Property<long>("ReceiverId");
-
-                    b.Property<long>("SenderId");
-
-                    b.HasKey("ReceiverId", "SenderId");
-
-                    b.HasIndex("SenderId");
-
-                    b.ToTable("UserUser");
-                });
-
-            modelBuilder.Entity("ChatProject.Models.UserUser", b =>
-                {
-                    b.HasOne("ChatProject.Models.User", "Receiver")
-                        .WithMany("ReceivedF")
-                        .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ChatProject.Models.User", "Sender")
-                        .WithMany("SentF")
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                    b.HasOne("ChatProject.Models.User")
+                        .WithMany("PossibleFriends")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

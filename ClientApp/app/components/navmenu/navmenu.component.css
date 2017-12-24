@@ -1,7 +1,24 @@
-li .glyphicon {
-    margin-right: 10px;
+a.company-logo {
+    display: block;
+    text-decoration: none;
+    font-family: Cookie, cursive;
+    width: 76px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 2.6;
+    border-radius: 100%;
 }
-
+.userName {
+    color: white;
+    font-size:large;
+    font-family: Cookie;
+    text-align: center;
+    font-family: 'Josefin Sans'
+}
 /* Highlighting rules for nav menu items */
 li.link-active a,
 li.link-active a:hover,
@@ -9,7 +26,12 @@ li.link-active a:focus {
     background-color: #4189C7;
     color: white;
 }
-
+li.link-logout a,
+li.link-logout a:hover,
+li.link-logout a:focus {
+    background-color: #EA3131;
+    color: white;
+}
 /* Keep the nav menu independent of scrolling and on top of other items */
 .main-nav {
     position: fixed;

@@ -20,12 +20,29 @@ namespace ChatProject.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ChatProject.Models.Friendship", b =>
+                {
+                    b.Property<long>("ReceiverId");
+
+                    b.Property<long>("SenderId");
+
+                    b.Property<bool>("status");
+
+                    b.HasKey("ReceiverId", "SenderId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Friendship");
+                });
+
             modelBuilder.Entity("ChatProject.Models.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateOfJoin");
+                    b.Property<DateTime>("DateOfJoin")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("FName")
                         .IsRequired()
@@ -50,30 +67,15 @@ namespace ChatProject.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ChatProject.Models.UserUser", b =>
-                {
-                    b.Property<long>("ReceiverId");
-
-                    b.Property<long>("SenderId");
-
-                    b.Property<bool>("status");
-
-                    b.HasKey("ReceiverId", "SenderId");
-
-                    b.HasIndex("SenderId");
-
-                    b.ToTable("UserUser");
-                });
-
-            modelBuilder.Entity("ChatProject.Models.UserUser", b =>
+            modelBuilder.Entity("ChatProject.Models.Friendship", b =>
                 {
                     b.HasOne("ChatProject.Models.User", "Receiver")
-                        .WithMany("ReceivedF")
+                        .WithMany()
                         .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ChatProject.Models.User", "Sender")
-                        .WithMany("SentF")
+                        .WithMany("PossibleFriends")
                         .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });

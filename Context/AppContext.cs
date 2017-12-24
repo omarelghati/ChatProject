@@ -13,27 +13,22 @@ namespace ChatProject.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserUser>()
+            modelBuilder.Entity<Friendship>()
                 .HasKey(t => new { t.ReceiverId, t.SenderId});
 
-            modelBuilder.Entity<UserUser>()
-                .HasOne(pt => pt.Sender)
-                .WithMany(p => p.SentF)
-                .HasForeignKey(pt => pt.SenderId);
-
-            modelBuilder.Entity<UserUser>()
-                .HasOne(pt => pt.Receiver)
-                .WithMany(t => t.ReceivedF)
-                .HasForeignKey(pt => pt.ReceiverId);
-
-            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
-            {
-                relationship.DeleteBehavior = DeleteBehavior.Restrict;
-            }
-
+            modelBuilder.Entity<Friendship>()
+              .HasOne(pt => pt.Sender)
+              .WithMany(t => t.PossibleFriends).Metadata.DeleteBehavior = DeleteBehavior.Restrict; 
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>()
+                       .Property(b => b.DateOfJoin)
+                       .HasDefaultValueSql("getdate()"); 
+
+
+
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Friendship> Friendship { get; set; }
     }
 }

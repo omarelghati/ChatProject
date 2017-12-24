@@ -5,13 +5,16 @@ using System.Threading.Tasks;
 
 namespace ChatProject.Models
 {
-    public class UserUser
+    public class Friendship
     {
         public long SenderId { get; set; }
-        public User Sender { get; set; }
 
         public long ReceiverId { get; set; }
-        public User Receiver { get; set; }
+
+        public virtual User Sender { get; set; }
+
+        public virtual User Receiver { get; set; }
+
         public bool status { get; set; }
     }
 }

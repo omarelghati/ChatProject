@@ -14,18 +14,22 @@ export class LoginComponent implements OnInit {
 
     }
 
-  ngOnInit() {
-      this.auth.getUsers().subscribe(response => console.log(response)); 
-  }
+    ngOnInit() {
+        this.auth.checkCredentials();
+      //this.auth.getUsers().subscribe(response => console.log(response)); 
+    }
 
-  onSignin(form: NgForm) {
-      this.auth.SignIn(form.value.username, form.value.password).subscribe((res) => {
-          if (res == "UserNotFound")
-              this.wrong = true;
-          else
-              this.router.navigate(["/home"]);
-      }
-          );
-  }
-
+    onSignin(form: NgForm) {
+        this.auth.SignIn(form.value.username, form.value.password).subscribe((res) => {
+            if (res == "UserNotFound")
+                this.wrong = true;
+            else {
+                console.log(res);
+                localStorage.setItem('currentUser', JSON.stringify(res));
+                console.log(res.requestSent);
+                this.router.navigate(["/home"]);
+            }
+        }
+            );
+    }
 }

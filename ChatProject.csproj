@@ -5,6 +5,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
  <ItemGroup>
  <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
@@ -30,6 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\logout\logout.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\bootstrap\css\bootstrap-grid.css.map" />
     <None Include="wwwroot\bootstrap\css\bootstrap-grid.min.css.map" />
     <None Include="wwwroot\bootstrap\css\bootstrap-reboot.css.map" />
@@ -38,6 +43,48 @@
     <None Include="wwwroot\bootstrap\css\bootstrap.min.css.map" />
     <None Include="wwwroot\bootstrap\js\bootstrap.js" />
     <None Include="wwwroot\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\fa-brands.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\fa-regular.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\fa-solid.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\fontawesome.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_animated.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_bordered-pulled.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_core.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_fixed-width.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_icons.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_larger.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_list.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_mixins.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_rotated-flipped.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_screen-reader.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_stacked.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\less\_variables.less" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\fa-brands.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\fa-regular.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\fa-solid.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\fontawesome.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_animated.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_bordered-pulled.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_core.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_fixed-width.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_icons.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_larger.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_list.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_mixins.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_rotated-flipped.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_screen-reader.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_stacked.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\scss\_variables.scss" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\bootstrap\web-fonts-with-css\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\logout\logout.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

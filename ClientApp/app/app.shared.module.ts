@@ -13,13 +13,17 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthentificationService } from './services/autentification.service';
 import { UserService } from './services/user.service';
 import { LogoutComponent } from './components/logout/logout.component';
+import { MyprofileComponent } from './components/myprofile/myprofile.component';
+import { MychatsComponent } from './components/mychats/mychats.component';
+import { FriendsComponent } from './components/friends/friends.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
-        CounterComponent,
-        FetchDataComponent,
+        MyprofileComponent,
+        MychatsComponent,
+        FriendsComponent,
         HomeComponent,
         LoginComponent,
         LogoutComponent
@@ -32,9 +36,11 @@ import { LogoutComponent } from './components/logout/logout.component';
             { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'login', component: LoginComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
             { path: 'logout', component: LogoutComponent },
+            { path: 'profile', component: MyprofileComponent },
+            { path: 'chats', component: MychatsComponent },
+            { path: 'friends', component: FriendsComponent },
+
             { path: '**', redirectTo: 'login' }
         ])
     ],

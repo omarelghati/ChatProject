@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
                 console.log(res);
                 localStorage.setItem('currentUser', JSON.stringify(res));
                 console.log(res.requestSent);
-                this.router.navigate(["/home"]);
+                this.router.navigate(["/friends"]);
             }
         }
             );

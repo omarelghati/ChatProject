@@ -52,7 +52,6 @@ namespace ChatProject.Controllers
             //friends = friends.Where(s => s.status == true);
             return Json(new { sent = sent, received = received });
         }
-
         [HttpGet("getData")]
         public IActionResult getData(int id)
         {

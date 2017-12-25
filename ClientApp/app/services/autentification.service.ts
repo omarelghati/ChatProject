@@ -17,7 +17,7 @@ export class AuthentificationService {
 
     checkCredentials() {
         if (localStorage.getItem("currentUser") != null) {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/friends']);
         } 
         else this.router.navigate(['login']);
     }
